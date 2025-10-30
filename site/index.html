@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard - Stock Tracker</title>
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Chart.js via CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <meta name="description" content="Personal stock tracker dashboard with auto-updating data and charts." />
+  <style>
+    /* Smooth card elevation */
+    .card { transition: box-shadow 0.2s ease, transform 0.2s ease; }
+    .card:hover { box-shadow: 0 10px 25px rgba(0,0,0,0.08); transform: translateY(-2px); }
+  </style>
+  <script>
+    // Tailwind theme extension (optional)
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            bull: '#16a34a', // green-600
+            bear: '#dc2626', // red-600
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-gray-50 text-gray-900 min-h-screen">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <header class="mb-8">
+      <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
+        <div>
+          <h1 class="text-3xl font-bold tracking-tight">Dashboard</h1>
+          <p class="text-gray-500 mt-1">Personal Stock Tracker</p>
+        </div>
+        <div class="text-sm text-gray-500" id="last-updated">Last Updated: —</div>
+      </div>
+    </header>
+
+    <main>
+      <div id="cards" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+
+      <div id="error" class="hidden mt-8 p-4 rounded-md bg-red-50 text-red-700 border border-red-200"></div>
+    </main>
+  </div>
+
+  <script>
+    async function loadData() {
+      const errorBox = document.getElementById('error');
+      const cards = document.getElementById('cards');
+      const lastUpdatedEl = document.getElementById('last-updated');
+      try {
+        const res = await fetch('data.json', { cache: 'no-cache' });
+        if (!res.ok) throw new Error('Failed to fetch data.json');
+        const data = await res.json();
+
+        // Update last updated
+        if (data.lastUpdated) {
+          lastUpdatedEl.textContent = `Last Updated: ${data.lastUpdated}`;
+        }
+
+        // Clear existing
+        cards.innerHTML = '';
+
+        (data.stocks || []).forEach((stock, idx) => {
+          const changeCls = (stock.dayChange || 0) >= 0 ? 'text-bull' : 'text-bear';
+          const changeSign = (stock.dayChange || 0) >= 0 ? '+' : '';
+
+          const card = document.createElement('div');
+          card.className = 'card bg-white rounded-xl border border-gray-200 p-5';
+          card.innerHTML = `
+            <div class="flex items-start justify-between">
+              <div>
+                <div class="flex items-center gap-3">
+                  <span class="text-xl font-semibold">${escapeHtml(stock.ticker || '')}</span>
+                  <span class="text-gray-400">•</span>
+                  <span class="text-gray-600">${escapeHtml(stock.companyName || '')}</span>
+                </div>
+                <div class="mt-2 flex items-baseline gap-3">
+                  <span class="text-2xl font-bold">$${fmtNumber(stock.currentPrice)}</span>
+                  <span class="${changeCls} font-medium">${changeSign}${fmtNumber(stock.dayChange)} (${changeSign}${fmtNumber(stock.dayChangePercent)}%)</span>
+                </div>
+              </div>
+            </div>
+            <div class="mt-4 relative">
+              <canvas id="chart-${idx}" height="120"></canvas>
+            </div>
+          `;
+          cards.appendChild(card);
+
+          // Draw Chart.js line chart
+          const ctx = document.getElementById(`chart-${idx}`).getContext('2d');
+          const prices = Array.isArray(stock.historicalData) ? stock.historicalData : [];
+          const labels = prices.map((_, i) => i + 1); // simple 1..N labels
+          new Chart(ctx, {
+            type: 'line',
+            data: {
+              labels,
+              datasets: [{
+                label: `${stock.ticker} - 30 Day`,
+                data: prices,
+                borderColor: '#3b82f6',
+                backgroundColor: 'rgba(59,130,246,0.1)',
+                borderWidth: 2,
+                pointRadius: 0,
+                tension: 0.25,
+                fill: true,
+              }]
+            },
+            options: {
+              responsive: true,
+              maintainAspectRatio: false,
+              plugins: { legend: { display: false } },
+              scales: {
+                x: { display: false },
+                y: { display: true, grid: { color: 'rgba(0,0,0,0.05)' } }
+              }
+            }
+          });
+        });
+      } catch (err) {
+        errorBox.classList.remove('hidden');
+        errorBox.textContent = `Error loading data: ${err.message}`;
+      }
+    }
+
+    function fmtNumber(n) {
+      if (typeof n !== 'number' || !isFinite(n)) return '-';
+      return n.toFixed(2);
+    }
+
+    function escapeHtml(str) {
+      return String(str)
+        .replaceAll('&', '&amp;')
+        .replaceAll('<', '&lt;')
+        .replaceAll('>', '&gt;')
+        .replaceAll('"', '&quot;')
+        .replaceAll("'", '&#039;');
+    }
+
+    window.addEventListener('DOMContentLoaded', loadData);
+  </script>
+</body>
+</html>
+
+

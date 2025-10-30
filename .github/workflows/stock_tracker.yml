@@ -1,0 +1,102 @@
+name: Stock Tracker
+
+on:
+  schedule:
+    - cron: '0 * * * *'
+  workflow_dispatch:
+
+jobs:
+  build_data:
+    name: Build Data
+    runs-on: ubuntu-latest
+    outputs:
+      alert_triggered: ${{ steps.alert_check.outputs.alert_triggered }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Build site data
+        env:
+          ALPHA_VANTAGE_KEY: ${{ secrets.ALPHA_VANTAGE_KEY }}
+        run: |
+          python scripts/update_data.py
+
+      - name: Check for alert file
+        id: alert_check
+        run: |
+          if [ -s site/alert_content.txt ]; then
+            echo "alert_triggered=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "alert_triggered=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Upload site artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: site
+          path: site
+
+  deploy_site:
+    name: Deploy Site
+    needs: build_data
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download site artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: site
+          path: site
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: site
+          publish_branch: gh-pages
+
+  send_alert:
+    name: Send Alert Email
+    needs: build_data
+    if: needs.build_data.outputs.alert_triggered == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout (for reading file paths)
+        uses: actions/checkout@v4
+
+      - name: Download site artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: site
+          path: site
+
+      - name: Read alert content
+        id: read_alert
+        run: |
+          echo "content<<EOF" >> $GITHUB_OUTPUT
+          cat site/alert_content.txt >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+      - name: Send mail
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          secure: true
+          username: ${{ secrets.MAIL_USERNAME }}
+          password: ${{ secrets.MAIL_PASSWORD }}
+          subject: Stock Watchlist Alert!
+          to: ${{ secrets.MAIL_USERNAME }}
+          from: Stock Tracker <${{ secrets.MAIL_USERNAME }}>
+          body: ${{ steps.read_alert.outputs.content }}
+
+
