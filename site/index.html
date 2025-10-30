@@ -10,9 +10,28 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <meta name="description" content="Personal stock tracker dashboard with auto-updating data and charts." />
   <style>
-    /* Smooth card elevation */
-    .card { transition: box-shadow 0.2s ease, transform 0.2s ease; }
-    .card:hover { box-shadow: 0 10px 25px rgba(0,0,0,0.08); transform: translateY(-2px); }
+    /* Smooth card elevation - desktop only */
+    .card { 
+      transition: box-shadow 0.2s ease, transform 0.2s ease;
+      -webkit-tap-highlight-color: transparent;
+    }
+    @media (hover: hover) and (pointer: fine) {
+      .card:hover { 
+        box-shadow: 0 10px 25px rgba(0,0,0,0.08); 
+        transform: translateY(-2px); 
+      }
+    }
+    /* Better touch targets on mobile */
+    @media (max-width: 640px) {
+      .card {
+        -webkit-tap-highlight-color: rgba(0,0,0,0.1);
+      }
+    }
+    /* Ensure charts fill container on mobile */
+    canvas {
+      max-width: 100%;
+      height: 100% !important;
+    }
   </style>
   <script>
     // Tailwind theme extension (optional)
@@ -29,21 +48,23 @@
   </script>
 </head>
 <body class="bg-gray-50 text-gray-900 min-h-screen">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-    <header class="mb-8">
-      <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
-        <div>
-          <h1 class="text-3xl font-bold tracking-tight">Dashboard</h1>
-          <p class="text-gray-500 mt-1">Personal Stock Tracker</p>
+  <div class="max-w-7xl mx-auto px-3 sm:px-4 lg:px-8 py-4 sm:py-6 lg:py-8">
+    <header class="mb-4 sm:mb-6 lg:mb-8">
+      <div class="flex flex-col gap-2 sm:gap-4">
+        <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-2 sm:gap-4">
+          <div>
+            <h1 class="text-2xl sm:text-3xl font-bold tracking-tight">Dashboard</h1>
+            <p class="text-gray-500 mt-0.5 text-sm sm:text-base">Personal Stock Tracker</p>
+          </div>
+          <div class="text-xs sm:text-sm text-gray-500" id="last-updated">Last Updated: —</div>
         </div>
-        <div class="text-sm text-gray-500" id="last-updated">Last Updated: —</div>
       </div>
     </header>
 
     <main>
-      <div id="cards" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+      <div id="cards" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 lg:gap-6"></div>
 
-      <div id="error" class="hidden mt-8 p-4 rounded-md bg-red-50 text-red-700 border border-red-200"></div>
+      <div id="error" class="hidden mt-6 sm:mt-8 p-3 sm:p-4 rounded-md bg-red-50 text-red-700 border border-red-200 text-sm sm:text-base"></div>
     </main>
   </div>
 
@@ -70,23 +91,21 @@
           const changeSign = (stock.dayChange || 0) >= 0 ? '+' : '';
 
           const card = document.createElement('div');
-          card.className = 'card bg-white rounded-xl border border-gray-200 p-5';
+          card.className = 'card bg-white rounded-xl border border-gray-200 p-4 sm:p-5';
           card.innerHTML = `
-            <div class="flex items-start justify-between">
-              <div>
-                <div class="flex items-center gap-3">
-                  <span class="text-xl font-semibold">${escapeHtml(stock.ticker || '')}</span>
-                  <span class="text-gray-400">•</span>
-                  <span class="text-gray-600">${escapeHtml(stock.companyName || '')}</span>
-                </div>
-                <div class="mt-2 flex items-baseline gap-3">
-                  <span class="text-2xl font-bold">$${fmtNumber(stock.currentPrice)}</span>
-                  <span class="${changeCls} font-medium">${changeSign}${fmtNumber(stock.dayChange)} (${changeSign}${fmtNumber(stock.dayChangePercent)}%)</span>
-                </div>
+            <div class="flex flex-col">
+              <div class="flex flex-col sm:flex-row sm:items-center sm:gap-2 gap-1 mb-2">
+                <span class="text-lg sm:text-xl font-semibold">${escapeHtml(stock.ticker || '')}</span>
+                <span class="text-gray-400 hidden sm:inline">•</span>
+                <span class="text-sm sm:text-base text-gray-600 truncate">${escapeHtml(stock.companyName || '')}</span>
+              </div>
+              <div class="mt-1 flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-3">
+                <span class="text-2xl sm:text-3xl font-bold">$${fmtNumber(stock.currentPrice)}</span>
+                <span class="${changeCls} font-medium text-base sm:text-lg">${changeSign}${fmtNumber(stock.dayChange)} (${changeSign}${fmtNumber(stock.dayChangePercent)}%)</span>
               </div>
             </div>
-            <div class="mt-4 relative">
-              <canvas id="chart-${idx}" height="120"></canvas>
+            <div class="mt-4 sm:mt-5 relative" style="height: 140px; min-height: 140px;">
+              <canvas id="chart-${idx}"></canvas>
             </div>
           `;
           cards.appendChild(card);
@@ -113,10 +132,37 @@
             options: {
               responsive: true,
               maintainAspectRatio: false,
-              plugins: { legend: { display: false } },
+              interaction: {
+                intersect: false,
+                mode: 'index'
+              },
+              plugins: { 
+                legend: { display: false },
+                tooltip: {
+                  enabled: true,
+                  backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                  padding: 8,
+                  titleFont: { size: 12 },
+                  bodyFont: { size: 12 },
+                  displayColors: false
+                }
+              },
               scales: {
-                x: { display: false },
-                y: { display: true, grid: { color: 'rgba(0,0,0,0.05)' } }
+                x: { 
+                  display: false,
+                  grid: { display: false }
+                },
+                y: { 
+                  display: true, 
+                  grid: { 
+                    color: 'rgba(0,0,0,0.05)',
+                    drawBorder: false
+                  },
+                  ticks: {
+                    font: { size: 11 },
+                    maxTicksLimit: 5
+                  }
+                }
               }
             }
           });
