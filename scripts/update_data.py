@@ -45,8 +45,8 @@ def read_watchlist(path: str) -> List[str]:
     return tickers
 
 
-def fetch_alpha_vantage_series(ticker: str, api_key: str) -> List[float]:
-    """Return last 30 closing prices (oldest -> newest)."""
+def fetch_alpha_vantage_series(ticker: str, api_key: str) -> tuple[List[float], List[str]]:
+    """Return last 30 closing prices and dates (oldest -> newest)."""
     url = (
         'https://www.alphavantage.co/query'
         f'?function=TIME_SERIES_DAILY&symbol={ticker}&apikey={api_key}&outputsize=compact'
@@ -56,8 +56,8 @@ def fetch_alpha_vantage_series(ticker: str, api_key: str) -> List[float]:
     data = resp.json()
     series = data.get('Time Series (Daily)')
     if not isinstance(series, dict):
-        # Alpha Vantage may rate-limit; return empty list if not available
-        return []
+        # Alpha Vantage may rate-limit; return empty lists if not available
+        return [], []
     # Sort dates ascending, take last 30
     dates = sorted(series.keys())[-30:]
     closes: List[float] = []
@@ -66,7 +66,7 @@ def fetch_alpha_vantage_series(ticker: str, api_key: str) -> List[float]:
             closes.append(float(series[d]['4. close']))
         except Exception:
             continue
-    return closes
+    return closes, dates
 
 
 def safe_get_info(t: yf.Ticker, key: str):
@@ -88,9 +88,15 @@ def safe_get_info(t: yf.Ticker, key: str):
 
 def fetch_current_open_name(ticker: str) -> Dict[str, Any]:
     t = yf.Ticker(ticker)
+    # Get info once (expensive call)
+    info = {}
+    try:
+        info = t.info or {}
+    except Exception:
+        pass
+
     # Current price
     current = None
-    # Try info currentPrice, then lastPrice from fast_info, then history
     current = safe_get_info(t, 'currentPrice')
     if current is None:
         current = safe_get_info(t, 'lastPrice')
@@ -113,19 +119,50 @@ def fetch_current_open_name(ticker: str) -> Dict[str, Any]:
         except Exception:
             day_open = None
 
+    # Previous close
+    previous_close = None
+    previous_close = safe_get_info(t, 'previousClose')
+    if previous_close is None:
+        try:
+            hist_2d = t.history(period='2d')
+            if not hist_2d.empty and len(hist_2d) > 1:
+                previous_close = float(hist_2d['Close'].iloc[-2])
+        except Exception:
+            previous_close = None
+
+    # Volume
+    volume = None
+    volume = safe_get_info(t, 'volume')
+    if volume is None:
+        try:
+            hist_d = t.history(period='1d')
+            if not hist_d.empty:
+                volume = float(hist_d['Volume'].iloc[-1])
+        except Exception:
+            volume = None
+
+    # 52-week high/low
+    fifty_two_week_high = info.get('fiftyTwoWeekHigh') or safe_get_info(t, 'fiftyTwoWeekHigh')
+    fifty_two_week_low = info.get('fiftyTwoWeekLow') or safe_get_info(t, 'fiftyTwoWeekLow')
+
+    # Market status (is market open?)
+    market_state = info.get('marketState', 'REGULAR').upper()
+    is_market_open = market_state in ['REGULAR', 'PRE', 'PREPRE']  # Consider pre-market as "open"
+
     # Company name
     company_name = None
-    try:
-        info = t.info or {}
-        company_name = info.get('longName') or info.get('shortName')
-    except Exception:
-        company_name = None
+    company_name = info.get('longName') or info.get('shortName')
     if not company_name:
         company_name = ticker
 
     return {
         'current': current,
         'open': day_open,
+        'previousClose': previous_close,
+        'volume': volume,
+        'fiftyTwoWeekHigh': fifty_two_week_high,
+        'fiftyTwoWeekLow': fifty_two_week_low,
+        'marketOpen': is_market_open,
         'companyName': company_name,
     }
 
@@ -153,9 +190,14 @@ def main() -> int:
             current = basics['current']
             day_open = basics['open']
             company_name = basics['companyName']
+            previous_close = basics['previousClose']
+            volume = basics['volume']
+            fifty_two_week_high = basics['fiftyTwoWeekHigh']
+            fifty_two_week_low = basics['fiftyTwoWeekLow']
+            market_open = basics['marketOpen']
 
-            # Historical series (best-effort; Alpha Vantage can rate-limit)
-            series = fetch_alpha_vantage_series(ticker, alpha_key)
+            # Historical series with dates (best-effort; Alpha Vantage can rate-limit)
+            series, dates = fetch_alpha_vantage_series(ticker, alpha_key)
 
             # Compute changes
             if current is None or day_open is None or day_open == 0:
@@ -165,13 +207,28 @@ def main() -> int:
                 day_change = float(current) - float(day_open)
                 pct_change = (day_change / float(day_open)) * 100.0
 
+            # Compute change from previous close
+            change_from_close = None
+            change_from_close_pct = None
+            if current is not None and previous_close is not None and previous_close > 0:
+                change_from_close = float(current) - float(previous_close)
+                change_from_close_pct = (change_from_close / float(previous_close)) * 100.0
+
             stock_item = {
                 'ticker': ticker,
                 'companyName': company_name,
                 'currentPrice': round(float(current), 2) if isinstance(current, (int, float)) else None,
                 'dayChange': round(float(day_change), 2) if isinstance(day_change, (int, float)) else None,
                 'dayChangePercent': round(float(pct_change), 2) if isinstance(pct_change, (int, float)) else None,
+                'previousClose': round(float(previous_close), 2) if isinstance(previous_close, (int, float)) else None,
+                'changeFromClose': round(float(change_from_close), 2) if isinstance(change_from_close, (int, float)) else None,
+                'changeFromClosePercent': round(float(change_from_close_pct), 2) if isinstance(change_from_close_pct, (int, float)) else None,
+                'volume': int(volume) if isinstance(volume, (int, float)) else None,
+                'fiftyTwoWeekHigh': round(float(fifty_two_week_high), 2) if isinstance(fifty_two_week_high, (int, float)) else None,
+                'fiftyTwoWeekLow': round(float(fifty_two_week_low), 2) if isinstance(fifty_two_week_low, (int, float)) else None,
+                'marketOpen': market_open,
                 'historicalData': [round(float(x), 2) for x in series][-30:],
+                'historicalDates': dates[-30:] if dates else [],
             }
             stocks_out.append(stock_item)
 
