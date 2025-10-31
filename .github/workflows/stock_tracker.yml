@@ -9,6 +9,7 @@ jobs:
   build_data:
     name: Build Data
     runs-on: ubuntu-latest
+    environment: BaseEnv
     outputs:
       alert_triggered: ${{ steps.alert_check.outputs.alert_triggered }}
     steps:
@@ -69,6 +70,7 @@ jobs:
     needs: build_data
     if: needs.build_data.outputs.alert_triggered == 'true'
     runs-on: ubuntu-latest
+    environment: BaseEnv
     steps:
       - name: Checkout (for reading file paths)
         uses: actions/checkout@v4
