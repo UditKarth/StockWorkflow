@@ -51,6 +51,8 @@ jobs:
     name: Deploy Site
     needs: build_data
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - name: Download site artifact
         uses: actions/download-artifact@v4
