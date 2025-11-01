@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard - Stock Tracker</title>
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Chart.js via CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <meta name="description" content="Personal stock tracker dashboard with auto-updating data and charts." />
+  <style>
+    /* Smooth card elevation - desktop only */
+    .card { 
+      transition: box-shadow 0.2s ease, transform 0.2s ease;
+      -webkit-tap-highlight-color: transparent;
+    }
+    @media (hover: hover) and (pointer: fine) {
+      .card:hover { 
+        box-shadow: 0 10px 25px rgba(0,0,0,0.08); 
+        transform: translateY(-2px); 
+      }
+    }
+    /* Better touch targets on mobile */
+    @media (max-width: 640px) {
+      .card {
+        -webkit-tap-highlight-color: rgba(0,0,0,0.1);
+      }
+    }
+    /* Ensure charts fill container on mobile */
+    canvas {
+      max-width: 100%;
+      height: 100% !important;
+    }
+    /* Spin animation for refresh icon */
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    .animate-spin {
+      animation: spin 1s linear infinite;
+    }
+  </style>
+  <script>
+    // Tailwind theme extension (optional)
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            bull: '#16a34a', // green-600
+            bear: '#dc2626', // red-600
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-gray-50 text-gray-900 min-h-screen">
+  <div class="max-w-7xl mx-auto px-3 sm:px-4 lg:px-8 py-4 sm:py-6 lg:py-8">
+    <header class="mb-4 sm:mb-6 lg:mb-8">
+      <div class="flex flex-col gap-2 sm:gap-4">
+        <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-2 sm:gap-4">
+          <div>
+            <h1 class="text-2xl sm:text-3xl font-bold tracking-tight">Dashboard</h1>
+            <p class="text-gray-500 mt-0.5 text-sm sm:text-base">Personal Stock Tracker</p>
+          </div>
+          <div class="flex items-center gap-3">
+            <button id="refresh-btn" class="px-3 py-1.5 sm:px-4 sm:py-2 bg-blue-600 hover:bg-blue-700 text-white text-xs sm:text-sm font-medium rounded-lg transition-colors flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed">
+              <svg id="refresh-icon" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+              </svg>
+              <span id="refresh-text">Refresh</span>
+            </button>
+            <div class="text-xs sm:text-sm text-gray-500" id="last-updated">Last Updated: —</div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <!-- Portfolio Summary Card -->
+      <div id="portfolio-summary" class="hidden mb-4 sm:mb-6 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl border border-blue-200 p-4 sm:p-6"></div>
+
+      <!-- Loading State -->
+      <div id="loading" class="hidden mb-6">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 lg:gap-6">
+          <div class="bg-white rounded-xl border border-gray-200 p-4 sm:p-5 animate-pulse">
+            <div class="h-6 bg-gray-200 rounded w-3/4 mb-4"></div>
+            <div class="h-8 bg-gray-200 rounded w-1/2 mb-4"></div>
+            <div class="h-32 bg-gray-200 rounded"></div>
+          </div>
+          <div class="bg-white rounded-xl border border-gray-200 p-4 sm:p-5 animate-pulse">
+            <div class="h-6 bg-gray-200 rounded w-3/4 mb-4"></div>
+            <div class="h-8 bg-gray-200 rounded w-1/2 mb-4"></div>
+            <div class="h-32 bg-gray-200 rounded"></div>
+          </div>
+        </div>
+      </div>
+
+      <div id="cards" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 lg:gap-6"></div>
+
+      <div id="error" class="hidden mt-6 sm:mt-8 p-3 sm:p-4 rounded-md bg-red-50 text-red-700 border border-red-200 text-sm sm:text-base"></div>
+    </main>
+  </div>
+
+  <script>
+    let isLoading = false;
+    let refreshTimeout = null;
+    let chartInstances = {};
+
+    // Format number with commas and 2 decimals
+    function fmtNumber(n) {
+      if (typeof n !== 'number' || !isFinite(n)) return '-';
+      return n.toFixed(2);
+    }
+
+    // Format large numbers (volume)
+    function fmtVolume(v) {
+      if (typeof v !== 'number' || !isFinite(v)) return '-';
+      if (v >= 1e9) return (v / 1e9).toFixed(2) + 'B';
+      if (v >= 1e6) return (v / 1e6).toFixed(2) + 'M';
+      if (v >= 1e3) return (v / 1e3).toFixed(2) + 'K';
+      return v.toLocaleString();
+    }
+
+    // Format date from YYYY-MM-DD to short format
+    function fmtDate(dateStr) {
+      if (!dateStr) return '';
+      try {
+        const date = new Date(dateStr);
+        const month = date.toLocaleDateString('en-US', { month: 'short' });
+        const day = date.getDate();
+        return `${month} ${day}`;
+      } catch {
+        return dateStr;
+      }
+    }
+
+    // Relative time (e.g., "2 minutes ago")
+    function relativeTime(dateStr) {
+      if (!dateStr) return '';
+      try {
+        const date = new Date(dateStr);
+        const now = new Date();
+        const diffMs = now - date;
+        const diffMins = Math.floor(diffMs / 60000);
+        const diffHours = Math.floor(diffMs / 3600000);
+        const diffDays = Math.floor(diffMs / 86400000);
+
+        if (diffMins < 1) return 'just now';
+        if (diffMins < 60) return `${diffMins} minute${diffMins !== 1 ? 's' : ''} ago`;
+        if (diffHours < 24) return `${diffHours} hour${diffHours !== 1 ? 's' : ''} ago`;
+        if (diffDays < 7) return `${diffDays} day${diffDays !== 1 ? 's' : ''} ago`;
+        return dateStr;
+      } catch {
+        return dateStr;
+      }
+    }
+
+    function escapeHtml(str) {
+      return String(str)
+        .replaceAll('&', '&amp;')
+        .replaceAll('<', '&lt;')
+        .replaceAll('>', '&gt;')
+        .replaceAll('"', '&quot;')
+        .replaceAll("'", '&#039;');
+    }
+
+    // Calculate portfolio summary
+    function calculateSummary(stocks) {
+      if (!stocks || stocks.length === 0) return null;
+      
+      const validStocks = stocks.filter(s => s.currentPrice && s.dayChangePercent !== null);
+      if (validStocks.length === 0) return null;
+
+      const totalStocks = stocks.length;
+      const avgChange = validStocks.reduce((sum, s) => sum + (s.dayChangePercent || 0), 0) / validStocks.length;
+      
+      const sortedByChange = [...validStocks].sort((a, b) => (b.dayChangePercent || 0) - (a.dayChangePercent || 0));
+      const best = sortedByChange[0];
+      const worst = sortedByChange[sortedByChange.length - 1];
+
+      const upCount = validStocks.filter(s => (s.dayChangePercent || 0) > 0).length;
+      const downCount = validStocks.filter(s => (s.dayChangePercent || 0) < 0).length;
+
+      return {
+        totalStocks,
+        avgChange,
+        best: best ? { ticker: best.ticker, change: best.dayChangePercent } : null,
+        worst: worst ? { ticker: worst.ticker, change: worst.dayChangePercent } : null,
+        upCount,
+        downCount,
+        flatCount: validStocks.length - upCount - downCount
+      };
+    }
+
+    // Render portfolio summary
+    function renderSummary(summary) {
+      const summaryEl = document.getElementById('portfolio-summary');
+      if (!summary) {
+        summaryEl.classList.add('hidden');
+        return;
+      }
+
+      const avgChangeCls = summary.avgChange >= 0 ? 'text-bull' : 'text-bear';
+      const avgSign = summary.avgChange >= 0 ? '+' : '';
+      
+      summaryEl.innerHTML = `
+        <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-4 text-center sm:text-left">
+          <div class="col-span-2 sm:col-span-4 lg:col-span-6 mb-2 sm:mb-0">
+            <h2 class="text-lg sm:text-xl font-bold mb-2 sm:mb-0">Portfolio Summary</h2>
+          </div>
+          <div>
+            <div class="text-xs sm:text-sm text-gray-600">Stocks</div>
+            <div class="text-lg sm:text-xl font-bold">${summary.totalStocks}</div>
+          </div>
+          <div>
+            <div class="text-xs sm:text-sm text-gray-600">Avg Change</div>
+            <div class="text-lg sm:text-xl font-bold ${avgChangeCls}">${avgSign}${fmtNumber(summary.avgChange)}%</div>
+          </div>
+          <div>
+            <div class="text-xs sm:text-sm text-gray-600">Best</div>
+            <div class="text-lg sm:text-xl font-bold text-bull">${summary.best ? `${summary.best.ticker}: +${fmtNumber(summary.best.change)}%` : '-'}</div>
+          </div>
+          <div>
+            <div class="text-xs sm:text-sm text-gray-600">Worst</div>
+            <div class="text-lg sm:text-xl font-bold text-bear">${summary.worst ? `${summary.worst.ticker}: ${fmtNumber(summary.worst.change)}%` : '-'}</div>
+          </div>
+          <div>
+            <div class="text-xs sm:text-sm text-gray-600">↑ Up</div>
+            <div class="text-lg sm:text-xl font-bold text-bull">${summary.upCount}</div>
+          </div>
+          <div>
+            <div class="text-xs sm:text-sm text-gray-600">↓ Down</div>
+            <div class="text-lg sm:text-xl font-bold text-bear">${summary.downCount}</div>
+          </div>
+        </div>
+      `;
+      summaryEl.classList.remove('hidden');
+    }
+
+    async function loadData(showLoading = true) {
+      const errorBox = document.getElementById('error');
+      const cards = document.getElementById('cards');
+      const lastUpdatedEl = document.getElementById('last-updated');
+      const loadingEl = document.getElementById('loading');
+      const refreshBtn = document.getElementById('refresh-btn');
+      const refreshIcon = document.getElementById('refresh-icon');
+      const refreshText = document.getElementById('refresh-text');
+
+      if (isLoading) return;
+      isLoading = true;
+
+      if (showLoading) {
+        loadingEl.classList.remove('hidden');
+        cards.classList.add('hidden');
+      }
+      errorBox.classList.add('hidden');
+      refreshBtn.disabled = true;
+
+      try {
+        const res = await fetch('data.json', { cache: 'no-cache', headers: { 'Cache-Control': 'no-cache' } });
+        if (!res.ok) throw new Error('Failed to fetch data.json');
+        const data = await res.json();
+
+        // Update last updated with relative time
+        if (data.lastUpdated) {
+          const relative = relativeTime(data.lastUpdated);
+          lastUpdatedEl.textContent = `Last Updated: ${relative}`;
+          lastUpdatedEl.title = data.lastUpdated; // Full timestamp on hover
+          
+          // Update relative time every minute
+          if (refreshTimeout) clearInterval(refreshTimeout);
+          refreshTimeout = setInterval(() => {
+            const rel = relativeTime(data.lastUpdated);
+            lastUpdatedEl.textContent = `Last Updated: ${rel}`;
+          }, 60000);
+        }
+
+        // Render portfolio summary
+        const summary = calculateSummary(data.stocks);
+        renderSummary(summary);
+
+        // Clear existing charts
+        Object.values(chartInstances).forEach(chart => chart.destroy());
+        chartInstances = {};
+
+        // Clear existing
+        cards.innerHTML = '';
+        loadingEl.classList.add('hidden');
+        cards.classList.remove('hidden');
+
+        (data.stocks || []).forEach((stock, idx) => {
+          const changeCls = (stock.dayChange || 0) >= 0 ? 'text-bull' : 'text-bear';
+          const changeSign = (stock.dayChange || 0) >= 0 ? '+' : '';
+          const marketStatusCls = stock.marketOpen ? 'text-green-600' : 'text-gray-500';
+
+          // Format dates for chart
+          const dates = Array.isArray(stock.historicalDates) ? stock.historicalDates : [];
+          const prices = Array.isArray(stock.historicalData) ? stock.historicalData : [];
+          const chartLabels = dates.length > 0 
+            ? dates.map(d => fmtDate(d))
+            : prices.map((_, i) => i + 1);
+
+          const card = document.createElement('div');
+          card.className = 'card bg-white rounded-xl border border-gray-200 p-4 sm:p-5';
+          card.innerHTML = `
+            <div class="flex flex-col">
+              <div class="flex flex-col sm:flex-row sm:items-center sm:gap-2 gap-1 mb-2">
+                <span class="text-lg sm:text-xl font-semibold">${escapeHtml(stock.ticker || '')}</span>
+                <span class="text-gray-400 hidden sm:inline">•</span>
+                <span class="text-sm sm:text-base text-gray-600 truncate">${escapeHtml(stock.companyName || '')}</span>
+                <span class="ml-auto text-xs px-2 py-0.5 rounded ${marketStatusCls} bg-gray-100 font-medium">${stock.marketOpen ? '● Open' : '○ Closed'}</span>
+              </div>
+              <div class="mt-1 flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-3">
+                <span class="text-2xl sm:text-3xl font-bold">$${fmtNumber(stock.currentPrice)}</span>
+                <span class="${changeCls} font-medium text-base sm:text-lg">${changeSign}${fmtNumber(stock.dayChange)} (${changeSign}${fmtNumber(stock.dayChangePercent)}%)</span>
+              </div>
+              <div class="mt-2 sm:mt-3 grid grid-cols-2 sm:grid-cols-3 gap-2 text-xs sm:text-sm">
+                ${stock.volume !== null ? `<div><span class="text-gray-500">Volume:</span> <span class="font-medium">${fmtVolume(stock.volume)}</span></div>` : ''}
+                ${stock.fiftyTwoWeekHigh !== null ? `<div><span class="text-gray-500">52W High:</span> <span class="font-medium">$${fmtNumber(stock.fiftyTwoWeekHigh)}</span></div>` : ''}
+                ${stock.fiftyTwoWeekLow !== null ? `<div><span class="text-gray-500">52W Low:</span> <span class="font-medium">$${fmtNumber(stock.fiftyTwoWeekLow)}</span></div>` : ''}
+              </div>
+            </div>
+            <div class="mt-4 sm:mt-5 relative" style="height: 140px; min-height: 140px;">
+              <canvas id="chart-${idx}"></canvas>
+            </div>
+          `;
+          cards.appendChild(card);
+
+          // Draw Chart.js line chart with dates
+          const ctx = document.getElementById(`chart-${idx}`).getContext('2d');
+          const isUp = prices.length > 0 && prices[prices.length - 1] >= (prices[0] || prices[prices.length - 1]);
+          const lineColor = isUp ? '#16a34a' : '#dc2626';
+          
+          const chart = new Chart(ctx, {
+            type: 'line',
+            data: {
+              labels: chartLabels,
+              datasets: [{
+                label: `${stock.ticker} - 30 Day`,
+                data: prices,
+                borderColor: lineColor,
+                backgroundColor: prices.length > 0 ? (isUp ? 'rgba(22, 163, 74, 0.1)' : 'rgba(220, 38, 38, 0.1)') : 'rgba(59,130,246,0.1)',
+                borderWidth: 2,
+                pointRadius: 0,
+                tension: 0.25,
+                fill: true,
+              }]
+            },
+            options: {
+              responsive: true,
+              maintainAspectRatio: false,
+              interaction: {
+                intersect: false,
+                mode: 'index'
+              },
+              plugins: { 
+                legend: { display: false },
+                tooltip: {
+                  enabled: true,
+                  backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                  padding: 8,
+                  titleFont: { size: 11 },
+                  bodyFont: { size: 11 },
+                  displayColors: false,
+                  callbacks: {
+                    title: (items) => {
+                      const idx = items[0].dataIndex;
+                      return dates[idx] ? dates[idx] : `Day ${idx + 1}`;
+                    },
+                    label: (context) => {
+                      return `Price: $${fmtNumber(context.parsed.y)}`;
+                    }
+                  }
+                }
+              },
+              scales: {
+                x: { 
+                  display: dates.length > 0,
+                  grid: { display: false },
+                  ticks: {
+                    font: { size: 9 },
+                    maxRotation: 45,
+                    minRotation: 0,
+                    maxTicksLimit: window.innerWidth < 640 ? 5 : 10
+                  }
+                },
+                y: { 
+                  display: true, 
+                  grid: { 
+                    color: 'rgba(0,0,0,0.05)',
+                    drawBorder: false
+                  },
+                  ticks: {
+                    font: { size: 10 },
+                    maxTicksLimit: 5
+                  }
+                }
+              }
+            }
+          });
+          
+          chartInstances[`chart-${idx}`] = chart;
+        });
+      } catch (err) {
+        errorBox.classList.remove('hidden');
+        errorBox.textContent = `Error loading data: ${err.message}. Click refresh to retry.`;
+        loadingEl.classList.add('hidden');
+        cards.classList.remove('hidden');
+      } finally {
+        isLoading = false;
+        refreshBtn.disabled = false;
+        refreshIcon.classList.remove('animate-spin');
+        refreshText.textContent = 'Refresh';
+      }
+    }
+
+    // Refresh button handler with debouncing
+    document.getElementById('refresh-btn').addEventListener('click', async () => {
+      if (isLoading) return;
+      const refreshIcon = document.getElementById('refresh-icon');
+      const refreshText = document.getElementById('refresh-text');
+      
+      refreshIcon.classList.add('animate-spin');
+      refreshText.textContent = 'Refreshing...';
+      
+      await loadData(true);
+    });
+
+    // Keyboard shortcut: R to refresh
+    document.addEventListener('keydown', (e) => {
+      if ((e.ctrlKey || e.metaKey) && e.key === 'r') {
+        // Allow default for Cmd/Ctrl+R, but we can also handle it
+        return;
+      }
+      if (e.key === 'r' && !isLoading && document.activeElement.tagName !== 'INPUT') {
+        document.getElementById('refresh-btn').click();
+      }
+    });
+
+    window.addEventListener('DOMContentLoaded', () => loadData(false));
+  </script>
+</body>
+</html>
+
+
