@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2025-11-02 18:19:50 UTC",
+  "lastUpdated": "2025-11-02 19:11:15 UTC",
   "stocks": [
     {
       "ticker": "AAPL",
@@ -83,8 +83,8 @@
       "ticker": "MSFT",
       "companyName": "Microsoft Corporation",
       "currentPrice": 517.81,
-      "dayChange": -11.07,
-      "dayChangePercent": -2.09,
+      "dayChange": -11.0,
+      "dayChangePercent": -2.08,
       "previousClose": 525.82,
       "changeFromClose": -8.01,
       "changeFromClosePercent": -1.52,
@@ -161,8 +161,8 @@
       "ticker": "GOOGL",
       "companyName": "Alphabet Inc.",
       "currentPrice": 281.19,
-      "dayChange": -2.02,
-      "dayChangePercent": -0.71,
+      "dayChange": -1.6,
+      "dayChangePercent": -0.57,
       "previousClose": 281.48,
       "changeFromClose": -0.29,
       "changeFromClosePercent": -0.1,
