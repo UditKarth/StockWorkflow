@@ -5,6 +5,10 @@ on:
     - cron: '0 * * * *'
   workflow_dispatch:
 
+concurrency:
+  group: stock-tracker-workflow-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   build_data:
     name: Build Data
@@ -66,6 +70,10 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: site
           publish_branch: gh-pages
+          force_orphan: false
+          cname: false
+          user_name: 'github-actions[bot]'
+          user_email: 'github-actions[bot]@users.noreply.github.com'
 
   send_alert:
     name: Send Alert Email
