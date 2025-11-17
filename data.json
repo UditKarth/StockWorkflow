@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2025-11-17 21:15:11 UTC",
+  "lastUpdated": "2025-11-17 22:15:57 UTC",
   "stocks": [
     {
       "ticker": "AAPL",
@@ -10,12 +10,11 @@
       "previousClose": 272.41,
       "changeFromClose": -4.95,
       "changeFromClosePercent": -1.82,
-      "volume": 42851691,
+      "volume": 44918325,
       "fiftyTwoWeekHigh": 277.32,
       "fiftyTwoWeekLow": 169.21,
       "marketOpen": false,
       "historicalData": [
-        256.69,
         256.48,
         258.06,
         254.04,
@@ -44,10 +43,10 @@
         275.25,
         273.47,
         272.95,
-        272.41
+        272.41,
+        267.46
       ],
       "historicalDates": [
-        "2025-10-06",
         "2025-10-07",
         "2025-10-08",
         "2025-10-09",
@@ -76,24 +75,24 @@
         "2025-11-11",
         "2025-11-12",
         "2025-11-13",
-        "2025-11-14"
+        "2025-11-14",
+        "2025-11-17"
       ]
     },
     {
       "ticker": "MSFT",
       "companyName": "Microsoft Corporation",
       "currentPrice": 507.49,
-      "dayChange": -0.96,
+      "dayChange": -0.95,
       "dayChangePercent": -0.19,
       "previousClose": 510.18,
       "changeFromClose": -2.69,
       "changeFromClosePercent": -0.53,
-      "volume": 17073338,
+      "volume": 19053569,
       "fiftyTwoWeekHigh": 555.45,
       "fiftyTwoWeekLow": 344.79,
       "marketOpen": false,
       "historicalData": [
-        528.57,
         523.98,
         524.85,
         522.4,
@@ -122,10 +121,10 @@
         508.68,
         511.14,
         503.29,
-        510.18
+        510.18,
+        507.49
       ],
       "historicalDates": [
-        "2025-10-06",
         "2025-10-07",
         "2025-10-08",
         "2025-10-09",
@@ -154,7 +153,8 @@
         "2025-11-11",
         "2025-11-12",
         "2025-11-13",
-        "2025-11-14"
+        "2025-11-14",
+        "2025-11-17"
       ]
     },
     {
@@ -239,8 +239,8 @@
       "ticker": "TSLA",
       "companyName": "Tesla, Inc.",
       "currentPrice": 408.92,
-      "dayChange": 10.18,
-      "dayChangePercent": 2.55,
+      "dayChange": 10.03,
+      "dayChangePercent": 2.51,
       "previousClose": 404.35,
       "changeFromClose": 4.57,
       "changeFromClosePercent": 1.13,
