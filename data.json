@@ -1,12 +1,12 @@
 {
-  "lastUpdated": "2025-11-20 21:15:38 UTC",
+  "lastUpdated": "2025-11-20 22:15:39 UTC",
   "stocks": [
     {
       "ticker": "AAPL",
       "companyName": "Apple Inc.",
       "currentPrice": 266.25,
-      "dayChange": -4.58,
-      "dayChangePercent": -1.69,
+      "dayChange": -4.56,
+      "dayChangePercent": -1.68,
       "previousClose": 268.56,
       "changeFromClose": -2.31,
       "changeFromClosePercent": -0.86,
@@ -15,7 +15,6 @@
       "fiftyTwoWeekLow": 169.21,
       "marketOpen": false,
       "historicalData": [
-        254.04,
         245.27,
         247.66,
         247.77,
@@ -44,10 +43,10 @@
         272.41,
         267.46,
         267.44,
-        268.56
+        268.56,
+        266.25
       ],
       "historicalDates": [
-        "2025-10-09",
         "2025-10-10",
         "2025-10-13",
         "2025-10-14",
@@ -76,7 +75,8 @@
         "2025-11-14",
         "2025-11-17",
         "2025-11-18",
-        "2025-11-19"
+        "2025-11-19",
+        "2025-11-20"
       ]
     },
     {
@@ -161,17 +161,16 @@
       "ticker": "GOOGL",
       "companyName": "Alphabet Inc.",
       "currentPrice": 289.45,
-      "dayChange": -15.09,
+      "dayChange": -15.1,
       "dayChangePercent": -4.96,
       "previousClose": 292.81,
       "changeFromClose": -3.36,
       "changeFromClosePercent": -1.15,
-      "volume": 59689650,
+      "volume": 61533187,
       "fiftyTwoWeekHigh": 306.41,
       "fiftyTwoWeekLow": 140.53,
       "marketOpen": false,
       "historicalData": [
-        241.53,
         236.57,
         244.15,
         245.45,
@@ -200,10 +199,10 @@
         276.41,
         285.02,
         284.28,
-        292.81
+        292.81,
+        289.45
       ],
       "historicalDates": [
-        "2025-10-09",
         "2025-10-10",
         "2025-10-13",
         "2025-10-14",
@@ -232,7 +231,8 @@
         "2025-11-14",
         "2025-11-17",
         "2025-11-18",
-        "2025-11-19"
+        "2025-11-19",
+        "2025-11-20"
       ]
     },
     {
