@@ -1,3 +1,3 @@
-STOCK ALERT: MSFT is down -2.68%
-STOCK ALERT: GOOGL is down -4.46%
-STOCK ALERT: TSLA is down -3.58%
+STOCK ALERT: MSFT is down -2.62%
+STOCK ALERT: GOOGL is down -4.06%
+STOCK ALERT: TSLA is down -3.21%
