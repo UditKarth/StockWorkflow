@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2025-11-24 21:16:07 UTC",
+  "lastUpdated": "2025-11-24 22:15:58 UTC",
   "stocks": [
     {
       "ticker": "AAPL",
@@ -15,6 +15,7 @@
       "fiftyTwoWeekLow": 169.21,
       "marketOpen": false,
       "historicalData": [
+        247.66,
         247.77,
         249.34,
         247.45,
@@ -43,10 +44,10 @@
         267.44,
         268.56,
         266.25,
-        271.49,
-        275.92
+        271.49
       ],
       "historicalDates": [
+        "2025-10-13",
         "2025-10-14",
         "2025-10-15",
         "2025-10-16",
@@ -75,8 +76,7 @@
         "2025-11-18",
         "2025-11-19",
         "2025-11-20",
-        "2025-11-21",
-        "2025-11-24"
+        "2025-11-21"
       ]
     },
     {
@@ -161,8 +161,8 @@
       "ticker": "GOOGL",
       "companyName": "Alphabet Inc.",
       "currentPrice": 318.58,
-      "dayChange": 7.45,
-      "dayChangePercent": 2.39,
+      "dayChange": 7.64,
+      "dayChangePercent": 2.46,
       "previousClose": 299.66,
       "changeFromClose": 18.92,
       "changeFromClosePercent": 6.31,
@@ -239,12 +239,12 @@
       "ticker": "TSLA",
       "companyName": "Tesla, Inc.",
       "currentPrice": 417.78,
-      "dayChange": 15.61,
+      "dayChange": 15.62,
       "dayChangePercent": 3.88,
       "previousClose": 391.09,
       "changeFromClose": 26.69,
       "changeFromClosePercent": 6.82,
-      "volume": 92674160,
+      "volume": 96252383,
       "fiftyTwoWeekHigh": 488.54,
       "fiftyTwoWeekLow": 214.25,
       "marketOpen": false,
