@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2025-11-28 18:23:15 UTC",
+  "lastUpdated": "2025-11-28 19:12:57 UTC",
   "stocks": [
     {
       "ticker": "AAPL",
@@ -88,7 +88,7 @@
       "previousClose": 485.5,
       "changeFromClose": 6.51,
       "changeFromClosePercent": 1.34,
-      "volume": 13575710,
+      "volume": 14363947,
       "fiftyTwoWeekHigh": 555.45,
       "fiftyTwoWeekLow": 344.79,
       "marketOpen": false,
@@ -239,12 +239,12 @@
       "ticker": "TSLA",
       "companyName": "Tesla, Inc.",
       "currentPrice": 430.17,
-      "dayChange": 3.58,
-      "dayChangePercent": 0.84,
+      "dayChange": 3.7,
+      "dayChangePercent": 0.87,
       "previousClose": 426.58,
       "changeFromClose": 3.59,
       "changeFromClosePercent": 0.84,
-      "volume": 35859577,
+      "volume": 36002475,
       "fiftyTwoWeekHigh": 488.54,
       "fiftyTwoWeekLow": 214.25,
       "marketOpen": false,
