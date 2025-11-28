@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2025-11-28 04:20:30 UTC",
+  "lastUpdated": "2025-11-28 05:17:40 UTC",
   "stocks": [
     {
       "ticker": "AAPL",
@@ -10,10 +10,10 @@
       "previousClose": 276.97,
       "changeFromClose": 0.58,
       "changeFromClosePercent": 0.21,
-      "volume": 31050665,
+      "volume": 31046299,
       "fiftyTwoWeekHigh": 280.38,
       "fiftyTwoWeekLow": 169.21,
-      "marketOpen": false,
+      "marketOpen": true,
       "historicalData": [
         247.45,
         252.29,
@@ -91,7 +91,7 @@
       "volume": 25657575,
       "fiftyTwoWeekHigh": 555.45,
       "fiftyTwoWeekLow": 344.79,
-      "marketOpen": false,
+      "marketOpen": true,
       "historicalData": [
         511.61,
         513.58,
@@ -169,7 +169,7 @@
       "volume": 50873677,
       "fiftyTwoWeekHigh": 328.83,
       "fiftyTwoWeekLow": 140.53,
-      "marketOpen": false,
+      "marketOpen": true,
       "historicalData": [
         251.46,
         253.3,
@@ -247,7 +247,7 @@
       "volume": 62435860,
       "fiftyTwoWeekHigh": 488.54,
       "fiftyTwoWeekLow": 214.25,
-      "marketOpen": false,
+      "marketOpen": true,
       "historicalData": [
         428.75,
         439.31,
