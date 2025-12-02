@@ -1,19 +1,19 @@
 {
-  "lastUpdated": "2025-12-02 20:20:46 UTC",
+  "lastUpdated": "2025-12-02 21:16:40 UTC",
   "stocks": [
     {
       "ticker": "AAPL",
       "companyName": "Apple Inc.",
-      "currentPrice": 286.26,
-      "dayChange": 3.26,
-      "dayChangePercent": 1.15,
+      "currentPrice": 286.19,
+      "dayChange": 3.19,
+      "dayChangePercent": 1.13,
       "previousClose": 283.1,
-      "changeFromClose": 3.16,
-      "changeFromClosePercent": 1.12,
-      "volume": 34560803,
+      "changeFromClose": 3.09,
+      "changeFromClosePercent": 1.09,
+      "volume": 47782384,
       "fiftyTwoWeekHigh": 287.4,
       "fiftyTwoWeekLow": 169.21,
-      "marketOpen": true,
+      "marketOpen": false,
       "historicalData": [
         262.24,
         262.77,
@@ -82,18 +82,17 @@
     {
       "ticker": "MSFT",
       "companyName": "Microsoft Corporation",
-      "currentPrice": 490.05,
-      "dayChange": 3.37,
-      "dayChangePercent": 0.69,
+      "currentPrice": 490.0,
+      "dayChange": 3.29,
+      "dayChangePercent": 0.67,
       "previousClose": 486.74,
-      "changeFromClose": 3.31,
-      "changeFromClosePercent": 0.68,
-      "volume": 10495339,
+      "changeFromClose": 3.26,
+      "changeFromClosePercent": 0.67,
+      "volume": 17932935,
       "fiftyTwoWeekHigh": 555.45,
       "fiftyTwoWeekLow": 344.79,
-      "marketOpen": true,
+      "marketOpen": false,
       "historicalData": [
-        516.79,
         517.66,
         520.54,
         520.56,
@@ -122,10 +121,10 @@
         476.99,
         485.5,
         492.01,
-        486.74
+        486.74,
+        490.0
       ],
       "historicalDates": [
-        "2025-10-20",
         "2025-10-21",
         "2025-10-22",
         "2025-10-23",
@@ -154,24 +153,24 @@
         "2025-11-25",
         "2025-11-26",
         "2025-11-28",
-        "2025-12-01"
+        "2025-12-01",
+        "2025-12-02"
       ]
     },
     {
       "ticker": "GOOGL",
       "companyName": "Alphabet Inc.",
       "currentPrice": 315.81,
-      "dayChange": -0.83,
-      "dayChangePercent": -0.26,
+      "dayChange": -0.93,
+      "dayChangePercent": -0.29,
       "previousClose": 314.89,
-      "changeFromClose": 0.93,
+      "changeFromClose": 0.92,
       "changeFromClosePercent": 0.29,
-      "volume": 22370082,
+      "volume": 33412353,
       "fiftyTwoWeekHigh": 328.83,
       "fiftyTwoWeekLow": 140.53,
-      "marketOpen": true,
+      "marketOpen": false,
       "historicalData": [
-        256.55,
         250.46,
         251.69,
         253.08,
@@ -200,10 +199,10 @@
         323.44,
         319.95,
         320.18,
-        314.89
+        314.89,
+        315.81
       ],
       "historicalDates": [
-        "2025-10-20",
         "2025-10-21",
         "2025-10-22",
         "2025-10-23",
@@ -232,24 +231,24 @@
         "2025-11-25",
         "2025-11-26",
         "2025-11-28",
-        "2025-12-01"
+        "2025-12-01",
+        "2025-12-02"
       ]
     },
     {
       "ticker": "TSLA",
       "companyName": "Tesla, Inc.",
-      "currentPrice": 430.57,
-      "dayChange": -0.39,
-      "dayChangePercent": -0.09,
+      "currentPrice": 429.24,
+      "dayChange": -1.57,
+      "dayChangePercent": -0.36,
       "previousClose": 430.14,
-      "changeFromClose": 0.43,
-      "changeFromClosePercent": 0.1,
-      "volume": 59514900,
+      "changeFromClose": -0.9,
+      "changeFromClosePercent": -0.21,
+      "volume": 68353607,
       "fiftyTwoWeekHigh": 488.54,
       "fiftyTwoWeekLow": 214.25,
-      "marketOpen": true,
+      "marketOpen": false,
       "historicalData": [
-        447.43,
         442.6,
         438.97,
         448.98,
@@ -278,10 +277,10 @@
         419.4,
         426.58,
         430.17,
-        430.14
+        430.14,
+        429.24
       ],
       "historicalDates": [
-        "2025-10-20",
         "2025-10-21",
         "2025-10-22",
         "2025-10-23",
@@ -310,7 +309,8 @@
         "2025-11-25",
         "2025-11-26",
         "2025-11-28",
-        "2025-12-01"
+        "2025-12-01",
+        "2025-12-02"
       ]
     }
   ]
