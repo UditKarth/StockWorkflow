@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2025-12-21 18:23:23 UTC",
+  "lastUpdated": "2025-12-21 19:12:59 UTC",
   "stocks": [
     {
       "ticker": "AAPL",
@@ -161,8 +161,8 @@
       "ticker": "GOOGL",
       "companyName": "Alphabet Inc.",
       "currentPrice": 307.16,
-      "dayChange": 5.43,
-      "dayChangePercent": 1.8,
+      "dayChange": 5.36,
+      "dayChangePercent": 1.78,
       "previousClose": 302.46,
       "changeFromClose": 4.7,
       "changeFromClosePercent": 1.55,
@@ -239,8 +239,8 @@
       "ticker": "TSLA",
       "companyName": "Tesla, Inc.",
       "currentPrice": 481.2,
-      "dayChange": -6.92,
-      "dayChangePercent": -1.42,
+      "dayChange": -7.34,
+      "dayChangePercent": -1.5,
       "previousClose": 483.37,
       "changeFromClose": -2.17,
       "changeFromClosePercent": -0.45,
