@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2025-12-24 22:17:10 UTC",
+  "lastUpdated": "2025-12-24 23:16:32 UTC",
   "stocks": [
     {
       "ticker": "AAPL",
@@ -83,8 +83,8 @@
       "ticker": "MSFT",
       "companyName": "Microsoft Corporation",
       "currentPrice": 488.02,
-      "dayChange": 2.34,
-      "dayChangePercent": 0.48,
+      "dayChange": 2.22,
+      "dayChangePercent": 0.46,
       "previousClose": 486.85,
       "changeFromClose": 1.17,
       "changeFromClosePercent": 0.24,
@@ -239,8 +239,8 @@
       "ticker": "TSLA",
       "companyName": "Tesla, Inc.",
       "currentPrice": 485.4,
-      "dayChange": -3.08,
-      "dayChangePercent": -0.63,
+      "dayChange": -3.11,
+      "dayChangePercent": -0.64,
       "previousClose": 485.56,
       "changeFromClose": -0.16,
       "changeFromClosePercent": -0.03,
