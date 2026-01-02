@@ -1,2 +1,2 @@
-STOCK ALERT: MSFT is down -2.63%
-STOCK ALERT: TSLA is down -4.3%
+STOCK ALERT: MSFT is down -2.52%
+STOCK ALERT: TSLA is down -3.69%
