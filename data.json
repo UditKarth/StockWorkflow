@@ -1,16 +1,16 @@
 {
-  "lastUpdated": "2026-02-04 21:29:24 UTC",
+  "lastUpdated": "2026-02-04 22:22:57 UTC",
   "stocks": [
     {
       "ticker": "AAPL",
       "companyName": "Apple Inc.",
       "currentPrice": 276.49,
-      "dayChange": 4.2,
+      "dayChange": 4.18,
       "dayChangePercent": 1.54,
       "previousClose": 269.48,
       "changeFromClose": 7.01,
       "changeFromClosePercent": 2.6,
-      "volume": 89810584,
+      "volume": 90320670,
       "fiftyTwoWeekHigh": 288.62,
       "fiftyTwoWeekLow": 169.21,
       "marketOpen": false,
