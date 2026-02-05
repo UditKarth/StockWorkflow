@@ -1,1 +1,2 @@
-STOCK ALERT: GOOGL is up 4.07%
+STOCK ALERT: MSFT is down -2.43%
+STOCK ALERT: GOOGL is up 5.64%
