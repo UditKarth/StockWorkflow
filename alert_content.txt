@@ -1,2 +1,1 @@
-STOCK ALERT: MSFT is down -2.71%
-STOCK ALERT: GOOGL is down -2.38%
+STOCK ALERT: AAPL is up 2.24%
