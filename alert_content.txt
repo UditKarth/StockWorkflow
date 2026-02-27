@@ -1,1 +1,2 @@
-STOCK ALERT: AAPL is down -2.23%
+STOCK ALERT: AAPL is down -3.16%
+STOCK ALERT: GOOGL is up 2.51%
