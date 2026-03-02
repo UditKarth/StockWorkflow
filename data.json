@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-03-02 22:23:39 UTC",
+  "lastUpdated": "2026-03-02 23:21:27 UTC",
   "stocks": [
     {
       "ticker": "AAPL",
@@ -83,8 +83,8 @@
       "ticker": "MSFT",
       "companyName": "Microsoft Corporation",
       "currentPrice": 398.55,
-      "dayChange": 5.69,
-      "dayChangePercent": 1.45,
+      "dayChange": 5.79,
+      "dayChangePercent": 1.47,
       "previousClose": 392.74,
       "changeFromClose": 5.81,
       "changeFromClosePercent": 1.48,
