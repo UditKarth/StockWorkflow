@@ -1,21 +1,20 @@
 {
-  "lastUpdated": "2026-03-16 19:01:40 UTC",
+  "lastUpdated": "2026-03-16 20:34:06 UTC",
   "stocks": [
     {
       "ticker": "AAPL",
       "companyName": "Apple Inc.",
-      "currentPrice": 252.74,
-      "dayChange": 0.64,
-      "dayChangePercent": 0.25,
+      "currentPrice": 252.82,
+      "dayChange": 0.72,
+      "dayChangePercent": 0.28,
       "previousClose": 250.12,
-      "changeFromClose": 2.62,
-      "changeFromClosePercent": 1.05,
-      "volume": 19208460,
+      "changeFromClose": 2.7,
+      "changeFromClosePercent": 1.08,
+      "volume": 30091880,
       "fiftyTwoWeekHigh": 288.62,
       "fiftyTwoWeekLow": 169.21,
-      "marketOpen": true,
+      "marketOpen": false,
       "historicalData": [
-        259.48,
         270.01,
         269.48,
         276.49,
@@ -44,10 +43,10 @@
         260.83,
         260.81,
         255.76,
-        250.12
+        250.12,
+        252.82
       ],
       "historicalDates": [
-        "2026-01-30",
         "2026-02-02",
         "2026-02-03",
         "2026-02-04",
@@ -76,24 +75,24 @@
         "2026-03-10",
         "2026-03-11",
         "2026-03-12",
-        "2026-03-13"
+        "2026-03-13",
+        "2026-03-16"
       ]
     },
     {
       "ticker": "MSFT",
       "companyName": "Microsoft Corporation",
-      "currentPrice": 400.05,
-      "dayChange": 2.11,
-      "dayChangePercent": 0.53,
+      "currentPrice": 399.95,
+      "dayChange": 2.0,
+      "dayChangePercent": 0.5,
       "previousClose": 395.55,
-      "changeFromClose": 4.5,
-      "changeFromClosePercent": 1.14,
-      "volume": 16567553,
+      "changeFromClose": 4.4,
+      "changeFromClosePercent": 1.11,
+      "volume": 27582497,
       "fiftyTwoWeekHigh": 555.45,
       "fiftyTwoWeekLow": 344.79,
-      "marketOpen": true,
+      "marketOpen": false,
       "historicalData": [
-        430.29,
         423.37,
         411.21,
         414.19,
@@ -122,10 +121,10 @@
         405.76,
         404.88,
         401.86,
-        395.55
+        395.55,
+        399.95
       ],
       "historicalDates": [
-        "2026-01-30",
         "2026-02-02",
         "2026-02-03",
         "2026-02-04",
@@ -154,24 +153,24 @@
         "2026-03-10",
         "2026-03-11",
         "2026-03-12",
-        "2026-03-13"
+        "2026-03-13",
+        "2026-03-16"
       ]
     },
     {
       "ticker": "GOOGL",
       "companyName": "Alphabet Inc.",
-      "currentPrice": 305.77,
-      "dayChange": 1.42,
-      "dayChangePercent": 0.47,
+      "currentPrice": 305.56,
+      "dayChange": 1.21,
+      "dayChangePercent": 0.4,
       "previousClose": 302.28,
-      "changeFromClose": 3.49,
-      "changeFromClosePercent": 1.15,
-      "volume": 13575161,
+      "changeFromClose": 3.28,
+      "changeFromClosePercent": 1.09,
+      "volume": 23445212,
       "fiftyTwoWeekHigh": 349.0,
       "fiftyTwoWeekLow": 140.53,
-      "marketOpen": true,
+      "marketOpen": false,
       "historicalData": [
-        338.0,
         343.69,
         339.71,
         333.04,
@@ -200,10 +199,10 @@
         307.04,
         308.7,
         303.55,
-        302.28
+        302.28,
+        305.56
       ],
       "historicalDates": [
-        "2026-01-30",
         "2026-02-02",
         "2026-02-03",
         "2026-02-04",
@@ -232,24 +231,24 @@
         "2026-03-10",
         "2026-03-11",
         "2026-03-12",
-        "2026-03-13"
+        "2026-03-13",
+        "2026-03-16"
       ]
     },
     {
       "ticker": "TSLA",
       "companyName": "Tesla, Inc.",
-      "currentPrice": 397.26,
-      "dayChange": 1.13,
-      "dayChangePercent": 0.29,
+      "currentPrice": 395.56,
+      "dayChange": -0.66,
+      "dayChangePercent": -0.17,
       "previousClose": 391.2,
-      "changeFromClose": 6.06,
-      "changeFromClosePercent": 1.55,
-      "volume": 44779453,
+      "changeFromClose": 4.36,
+      "changeFromClosePercent": 1.11,
+      "volume": 56545394,
       "fiftyTwoWeekHigh": 498.83,
       "fiftyTwoWeekLow": 214.25,
-      "marketOpen": true,
+      "marketOpen": false,
       "historicalData": [
-        430.41,
         421.81,
         421.96,
         406.01,
@@ -278,10 +277,10 @@
         399.24,
         407.82,
         395.01,
-        391.2
+        391.2,
+        395.56
       ],
       "historicalDates": [
-        "2026-01-30",
         "2026-02-02",
         "2026-02-03",
         "2026-02-04",
@@ -310,7 +309,8 @@
         "2026-03-10",
         "2026-03-11",
         "2026-03-12",
-        "2026-03-13"
+        "2026-03-13",
+        "2026-03-16"
       ]
     }
   ]
