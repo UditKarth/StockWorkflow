@@ -1,12 +1,12 @@
 {
-  "lastUpdated": "2026-03-31 23:30:52 UTC",
+  "lastUpdated": "2026-04-01 02:08:57 UTC",
   "stocks": [
     {
       "ticker": "AAPL",
       "companyName": "Apple Inc.",
       "currentPrice": 253.79,
-      "dayChange": 5.88,
-      "dayChangePercent": 2.37,
+      "dayChange": 5.9,
+      "dayChangePercent": 2.38,
       "previousClose": 246.63,
       "changeFromClose": 7.16,
       "changeFromClosePercent": 2.9,
