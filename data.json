@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-04-09 20:02:45 UTC",
+  "lastUpdated": "2026-04-09 21:42:03 UTC",
   "stocks": [
     {
       "ticker": "AAPL",
@@ -15,7 +15,6 @@
       "fiftyTwoWeekLow": 169.21,
       "marketOpen": false,
       "historicalData": [
-        274.23,
         272.95,
         264.18,
         264.72,
@@ -44,10 +43,10 @@
         255.92,
         258.86,
         253.5,
-        258.9
+        258.9,
+        260.49
       ],
       "historicalDates": [
-        "2026-02-25",
         "2026-02-26",
         "2026-02-27",
         "2026-03-02",
@@ -76,7 +75,8 @@
         "2026-04-02",
         "2026-04-06",
         "2026-04-07",
-        "2026-04-08"
+        "2026-04-08",
+        "2026-04-09"
       ]
     },
     {
@@ -93,7 +93,6 @@
       "fiftyTwoWeekLow": 350.25,
       "marketOpen": false,
       "historicalData": [
-        400.6,
         401.72,
         392.74,
         398.55,
@@ -122,10 +121,10 @@
         373.46,
         372.88,
         372.29,
-        374.33
+        374.33,
+        373.07
       ],
       "historicalDates": [
-        "2026-02-25",
         "2026-02-26",
         "2026-02-27",
         "2026-03-02",
@@ -154,24 +153,24 @@
         "2026-04-02",
         "2026-04-06",
         "2026-04-07",
-        "2026-04-08"
+        "2026-04-08",
+        "2026-04-09"
       ]
     },
     {
       "ticker": "GOOGL",
       "companyName": "Alphabet Inc.",
-      "currentPrice": 318.48,
-      "dayChange": 2.57,
-      "dayChangePercent": 0.81,
+      "currentPrice": 318.49,
+      "dayChange": 2.59,
+      "dayChangePercent": 0.82,
       "previousClose": 317.32,
-      "changeFromClose": 1.16,
-      "changeFromClosePercent": 0.36,
-      "volume": 20658488,
+      "changeFromClose": 1.17,
+      "changeFromClosePercent": 0.37,
+      "volume": 23608698,
       "fiftyTwoWeekHigh": 349.0,
       "fiftyTwoWeekLow": 143.03,
       "marketOpen": false,
       "historicalData": [
-        312.9,
         307.38,
         311.76,
         306.52,
@@ -200,10 +199,10 @@
         295.77,
         299.99,
         305.46,
-        317.32
+        317.32,
+        318.49
       ],
       "historicalDates": [
-        "2026-02-25",
         "2026-02-26",
         "2026-02-27",
         "2026-03-02",
@@ -232,24 +231,24 @@
         "2026-04-02",
         "2026-04-06",
         "2026-04-07",
-        "2026-04-08"
+        "2026-04-08",
+        "2026-04-09"
       ]
     },
     {
       "ticker": "TSLA",
       "companyName": "Tesla, Inc.",
-      "currentPrice": 345.57,
-      "dayChange": 2.54,
-      "dayChangePercent": 0.74,
+      "currentPrice": 345.62,
+      "dayChange": 2.59,
+      "dayChangePercent": 0.75,
       "previousClose": 343.25,
-      "changeFromClose": 2.32,
-      "changeFromClosePercent": 0.68,
-      "volume": 60624995,
+      "changeFromClose": 2.37,
+      "changeFromClosePercent": 0.69,
+      "volume": 61134264,
       "fiftyTwoWeekHigh": 498.83,
       "fiftyTwoWeekLow": 217.8,
       "marketOpen": false,
       "historicalData": [
-        417.4,
         408.58,
         402.51,
         403.32,
@@ -278,10 +277,10 @@
         360.59,
         352.82,
         346.65,
-        343.25
+        343.25,
+        345.62
       ],
       "historicalDates": [
-        "2026-02-25",
         "2026-02-26",
         "2026-02-27",
         "2026-03-02",
@@ -310,7 +309,8 @@
         "2026-04-02",
         "2026-04-06",
         "2026-04-07",
-        "2026-04-08"
+        "2026-04-08",
+        "2026-04-09"
       ]
     }
   ]
