@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-04-13 20:02:25 UTC",
+  "lastUpdated": "2026-04-13 21:42:57 UTC",
   "stocks": [
     {
       "ticker": "AAPL",
@@ -10,12 +10,11 @@
       "previousClose": 260.48,
       "changeFromClose": -1.28,
       "changeFromClosePercent": -0.49,
-      "volume": 32438181,
+      "volume": 35080398,
       "fiftyTwoWeekHigh": 288.62,
       "fiftyTwoWeekLow": 189.81,
       "marketOpen": false,
       "historicalData": [
-        264.18,
         264.72,
         263.75,
         262.52,
@@ -44,10 +43,10 @@
         253.5,
         258.9,
         260.49,
-        260.48
+        260.48,
+        259.2
       ],
       "historicalDates": [
-        "2026-02-27",
         "2026-03-02",
         "2026-03-03",
         "2026-03-04",
@@ -76,7 +75,8 @@
         "2026-04-07",
         "2026-04-08",
         "2026-04-09",
-        "2026-04-10"
+        "2026-04-10",
+        "2026-04-13"
       ]
     },
     {
@@ -88,12 +88,11 @@
       "previousClose": 370.87,
       "changeFromClose": 13.5,
       "changeFromClosePercent": 3.64,
-      "volume": 33430295,
+      "volume": 34812755,
       "fiftyTwoWeekHigh": 555.45,
       "fiftyTwoWeekLow": 355.67,
       "marketOpen": false,
       "historicalData": [
-        392.74,
         398.55,
         403.93,
         405.2,
@@ -122,10 +121,10 @@
         372.29,
         374.33,
         373.07,
-        370.87
+        370.87,
+        384.37
       ],
       "historicalDates": [
-        "2026-02-27",
         "2026-03-02",
         "2026-03-03",
         "2026-03-04",
@@ -154,24 +153,24 @@
         "2026-04-07",
         "2026-04-08",
         "2026-04-09",
-        "2026-04-10"
+        "2026-04-10",
+        "2026-04-13"
       ]
     },
     {
       "ticker": "GOOGL",
       "companyName": "Alphabet Inc.",
-      "currentPrice": 321.24,
-      "dayChange": 4.1,
-      "dayChangePercent": 1.29,
+      "currentPrice": 321.31,
+      "dayChange": 4.18,
+      "dayChangePercent": 1.32,
       "previousClose": 317.26,
-      "changeFromClose": 3.97,
-      "changeFromClosePercent": 1.25,
-      "volume": 17781455,
+      "changeFromClose": 4.05,
+      "changeFromClosePercent": 1.28,
+      "volume": 18794579,
       "fiftyTwoWeekHigh": 349.0,
       "fiftyTwoWeekLow": 146.1,
       "marketOpen": false,
       "historicalData": [
-        311.76,
         306.52,
         303.58,
         303.13,
@@ -200,10 +199,10 @@
         305.46,
         317.32,
         318.49,
-        317.24
+        317.24,
+        321.31
       ],
       "historicalDates": [
-        "2026-02-27",
         "2026-03-02",
         "2026-03-03",
         "2026-03-04",
@@ -232,7 +231,8 @@
         "2026-04-07",
         "2026-04-08",
         "2026-04-09",
-        "2026-04-10"
+        "2026-04-10",
+        "2026-04-13"
       ]
     },
     {
@@ -244,12 +244,11 @@
       "previousClose": 349.0,
       "changeFromClose": 3.42,
       "changeFromClosePercent": 0.98,
-      "volume": 52166341,
+      "volume": 52761941,
       "fiftyTwoWeekHigh": 498.83,
       "fiftyTwoWeekLow": 222.79,
       "marketOpen": false,
       "historicalData": [
-        402.51,
         403.32,
         392.43,
         405.94,
@@ -278,10 +277,10 @@
         346.65,
         343.25,
         345.62,
-        348.95
+        348.95,
+        352.42
       ],
       "historicalDates": [
-        "2026-02-27",
         "2026-03-02",
         "2026-03-03",
         "2026-03-04",
@@ -310,7 +309,8 @@
         "2026-04-07",
         "2026-04-08",
         "2026-04-09",
-        "2026-04-10"
+        "2026-04-10",
+        "2026-04-13"
       ]
     }
   ]
