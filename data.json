@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-05-14 20:25:21 UTC",
+  "lastUpdated": "2026-05-14 22:06:39 UTC",
   "stocks": [
     {
       "ticker": "AAPL",
@@ -88,7 +88,7 @@
       "previousClose": 405.21,
       "changeFromClose": 4.22,
       "changeFromClosePercent": 1.04,
-      "volume": 25106919,
+      "volume": 26419511,
       "fiftyTwoWeekHigh": 555.45,
       "fiftyTwoWeekLow": 356.28,
       "marketOpen": false,
@@ -166,7 +166,7 @@
       "previousClose": 402.62,
       "changeFromClose": -1.55,
       "changeFromClosePercent": -0.38,
-      "volume": 20996229,
+      "volume": 21077099,
       "fiftyTwoWeekHigh": 403.7,
       "fiftyTwoWeekLow": 162.0,
       "marketOpen": false,
@@ -239,8 +239,8 @@
       "ticker": "TSLA",
       "companyName": "Tesla, Inc.",
       "currentPrice": 443.3,
-      "dayChange": -3.19,
-      "dayChangePercent": -0.71,
+      "dayChange": -3.12,
+      "dayChangePercent": -0.7,
       "previousClose": 445.27,
       "changeFromClose": -1.97,
       "changeFromClosePercent": -0.44,
