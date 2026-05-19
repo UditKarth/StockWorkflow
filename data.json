@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-05-19 20:27:36 UTC",
+  "lastUpdated": "2026-05-19 22:12:14 UTC",
   "stocks": [
     {
       "ticker": "AAPL",
@@ -83,7 +83,7 @@
       "ticker": "MSFT",
       "companyName": "Microsoft Corporation",
       "currentPrice": 417.42,
-      "dayChange": -12.48,
+      "dayChange": -12.47,
       "dayChangePercent": -2.9,
       "previousClose": 423.54,
       "changeFromClose": -6.12,
@@ -166,7 +166,7 @@
       "previousClose": 396.94,
       "changeFromClose": -9.28,
       "changeFromClosePercent": -2.34,
-      "volume": 32231851,
+      "volume": 38640994,
       "fiftyTwoWeekHigh": 408.61,
       "fiftyTwoWeekLow": 162.0,
       "marketOpen": false,
@@ -239,8 +239,8 @@
       "ticker": "TSLA",
       "companyName": "Tesla, Inc.",
       "currentPrice": 404.11,
-      "dayChange": 0.95,
-      "dayChangePercent": 0.24,
+      "dayChange": 1.12,
+      "dayChangePercent": 0.28,
       "previousClose": 409.99,
       "changeFromClose": -5.88,
       "changeFromClosePercent": -1.43,
