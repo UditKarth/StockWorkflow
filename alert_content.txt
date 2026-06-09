@@ -1,2 +1,2 @@
-STOCK ALERT: AAPL is down -2.33%
+STOCK ALERT: AAPL is down -2.32%
 STOCK ALERT: TSLA is up 3.19%
