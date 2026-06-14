@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-14 17:15:54 UTC",
+  "lastUpdated": "2026-06-14 19:20:00 UTC",
   "stocks": [
     {
       "ticker": "AAPL",
@@ -239,7 +239,7 @@
       "ticker": "TSLA",
       "companyName": "Tesla, Inc.",
       "currentPrice": 406.43,
-      "dayChange": 6.94,
+      "dayChange": 6.97,
       "dayChangePercent": 1.74,
       "previousClose": 399.15,
       "changeFromClose": 7.28,
