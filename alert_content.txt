@@ -1,1 +1,2 @@
-STOCK ALERT: AAPL is down -2.81%
+STOCK ALERT: AAPL is down -3.67%
+STOCK ALERT: MSFT is down -3.09%
