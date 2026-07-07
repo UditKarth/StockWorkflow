@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-07 21:19:11 UTC",
+  "lastUpdated": "2026-07-07 22:56:13 UTC",
   "stocks": [
     {
       "ticker": "AAPL",
@@ -83,8 +83,8 @@
       "ticker": "MSFT",
       "companyName": "Microsoft Corporation",
       "currentPrice": 388.84,
-      "dayChange": -3.65,
-      "dayChangePercent": -0.93,
+      "dayChange": -3.7,
+      "dayChangePercent": -0.94,
       "previousClose": 386.74,
       "changeFromClose": 2.1,
       "changeFromClosePercent": 0.54,
@@ -161,8 +161,8 @@
       "ticker": "GOOGL",
       "companyName": "Alphabet Inc.",
       "currentPrice": 367.03,
-      "dayChange": -2.04,
-      "dayChangePercent": -0.55,
+      "dayChange": -1.5,
+      "dayChangePercent": -0.41,
       "previousClose": 366.46,
       "changeFromClose": 0.57,
       "changeFromClosePercent": 0.16,
@@ -239,7 +239,7 @@
       "ticker": "TSLA",
       "companyName": "Tesla, Inc.",
       "currentPrice": 402.9,
-      "dayChange": -14.06,
+      "dayChange": -14.07,
       "dayChangePercent": -3.37,
       "previousClose": 419.77,
       "changeFromClose": -16.87,
