@@ -1,12 +1,12 @@
 {
-  "lastUpdated": "2026-07-08 21:02:04 UTC",
+  "lastUpdated": "2026-07-08 23:00:39 UTC",
   "stocks": [
     {
       "ticker": "AAPL",
       "companyName": "Apple Inc.",
       "currentPrice": 313.39,
-      "dayChange": 1.48,
-      "dayChangePercent": 0.47,
+      "dayChange": 1.73,
+      "dayChangePercent": 0.56,
       "previousClose": 310.66,
       "changeFromClose": 2.73,
       "changeFromClosePercent": 0.88,
@@ -83,8 +83,8 @@
       "ticker": "MSFT",
       "companyName": "Microsoft Corporation",
       "currentPrice": 383.34,
-      "dayChange": -0.69,
-      "dayChangePercent": -0.18,
+      "dayChange": -0.74,
+      "dayChangePercent": -0.19,
       "previousClose": 388.84,
       "changeFromClose": -5.5,
       "changeFromClosePercent": -1.41,
