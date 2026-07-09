@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-09 02:32:12 UTC",
+  "lastUpdated": "2026-07-09 06:38:41 UTC",
   "stocks": [
     {
       "ticker": "AAPL",
@@ -13,7 +13,7 @@
       "volume": 38466049,
       "fiftyTwoWeekHigh": 317.4,
       "fiftyTwoWeekLow": 201.5,
-      "marketOpen": false,
+      "marketOpen": true,
       "historicalData": [
         308.33,
         310.85,
@@ -91,7 +91,7 @@
       "volume": 24832517,
       "fiftyTwoWeekHigh": 555.45,
       "fiftyTwoWeekLow": 349.2,
-      "marketOpen": false,
+      "marketOpen": true,
       "historicalData": [
         416.03,
         412.67,
@@ -169,7 +169,7 @@
       "volume": 21880821,
       "fiftyTwoWeekHigh": 408.61,
       "fiftyTwoWeekLow": 172.77,
-      "marketOpen": false,
+      "marketOpen": true,
       "historicalData": [
         388.88,
         388.83,
@@ -247,7 +247,7 @@
       "volume": 33241905,
       "fiftyTwoWeekHigh": 498.83,
       "fiftyTwoWeekLow": 293.55,
-      "marketOpen": false,
+      "marketOpen": true,
       "historicalData": [
         433.59,
         440.36,
