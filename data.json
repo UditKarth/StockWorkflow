@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-10 08:17:35 UTC",
+  "lastUpdated": "2026-07-10 11:46:30 UTC",
   "stocks": [
     {
       "ticker": "AAPL",
@@ -168,7 +168,7 @@
       "changeFromClosePercent": -0.84,
       "volume": 24092965,
       "fiftyTwoWeekHigh": 408.61,
-      "fiftyTwoWeekLow": 174.38,
+      "fiftyTwoWeekLow": 176.48,
       "marketOpen": true,
       "historicalData": [
         388.83,
