@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-11 23:50:35 UTC",
+  "lastUpdated": "2026-07-12 02:20:45 UTC",
   "stocks": [
     {
       "ticker": "AAPL",
@@ -238,13 +238,13 @@
     {
       "ticker": "TSLA",
       "companyName": "Tesla, Inc.",
-      "currentPrice": 407.76,
-      "dayChange": -2.73,
+      "currentPrice": 407.74,
+      "dayChange": -2.74,
       "dayChangePercent": -0.67,
       "previousClose": 406.55,
-      "changeFromClose": 1.21,
-      "changeFromClosePercent": 0.3,
-      "volume": 32768180,
+      "changeFromClose": 1.2,
+      "changeFromClosePercent": 0.29,
+      "volume": 33342700,
       "fiftyTwoWeekHigh": 498.83,
       "fiftyTwoWeekLow": 297.82,
       "marketOpen": false,
