@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-20 21:06:55 UTC",
+  "lastUpdated": "2026-07-20 22:55:05 UTC",
   "stocks": [
     {
       "ticker": "AAPL",
@@ -10,10 +10,10 @@
       "previousClose": 333.74,
       "changeFromClose": -7.15,
       "changeFromClosePercent": -2.14,
-      "volume": 51009491,
+      "volume": 51014085,
       "fiftyTwoWeekHigh": 334.99,
       "fiftyTwoWeekLow": 201.5,
-      "marketOpen": true,
+      "marketOpen": false,
       "historicalData": [
         307.34,
         301.54,
@@ -83,8 +83,8 @@
       "ticker": "MSFT",
       "companyName": "Microsoft Corporation",
       "currentPrice": 402.29,
-      "dayChange": 10.88,
-      "dayChangePercent": 2.78,
+      "dayChange": 11.19,
+      "dayChangePercent": 2.86,
       "previousClose": 393.82,
       "changeFromClose": 8.47,
       "changeFromClosePercent": 2.15,
@@ -161,8 +161,8 @@
       "ticker": "GOOGL",
       "companyName": "Alphabet Inc.",
       "currentPrice": 351.99,
-      "dayChange": 1.11,
-      "dayChangePercent": 0.32,
+      "dayChange": 0.84,
+      "dayChangePercent": 0.24,
       "previousClose": 346.77,
       "changeFromClose": 5.22,
       "changeFromClosePercent": 1.51,
@@ -247,7 +247,7 @@
       "volume": 32893543,
       "fiftyTwoWeekHigh": 498.83,
       "fiftyTwoWeekLow": 297.82,
-      "marketOpen": true,
+      "marketOpen": false,
       "historicalData": [
         391.0,
         408.95,
