@@ -1,2 +1,1 @@
-STOCK ALERT: MSFT is up 2.86%
-STOCK ALERT: TSLA is down -4.28%
+STOCK ALERT: TSLA is up 2.68%
