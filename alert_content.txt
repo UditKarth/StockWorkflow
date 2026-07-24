@@ -1,2 +1,2 @@
-STOCK ALERT: MSFT is down -2.15%
-STOCK ALERT: TSLA is down -6.25%
+STOCK ALERT: AAPL is up 2.35%
+STOCK ALERT: TSLA is down -2.75%
