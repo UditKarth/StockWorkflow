@@ -1,12 +1,12 @@
 {
-  "lastUpdated": "2026-08-03 20:23:18 UTC",
+  "lastUpdated": "2026-08-03 22:03:50 UTC",
   "stocks": [
     {
       "ticker": "AAPL",
       "companyName": "Apple Inc.",
       "currentPrice": 303.42,
-      "dayChange": -6.16,
-      "dayChangePercent": -1.99,
+      "dayChange": -6.25,
+      "dayChangePercent": -2.02,
       "previousClose": 308.91,
       "changeFromClose": -5.49,
       "changeFromClosePercent": -1.78,
@@ -239,8 +239,8 @@
       "ticker": "TSLA",
       "companyName": "Tesla, Inc.",
       "currentPrice": 322.08,
-      "dayChange": 11.12,
-      "dayChangePercent": 3.58,
+      "dayChange": 11.07,
+      "dayChangePercent": 3.56,
       "previousClose": 311.21,
       "changeFromClose": 10.87,
       "changeFromClosePercent": 3.49,
