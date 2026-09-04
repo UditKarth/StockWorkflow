@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-09-04 21:10:58 UTC",
+  "lastUpdated": "2026-09-04 23:39:15 UTC",
   "stocks": [
     {
       "ticker": "AAPL",
@@ -161,8 +161,8 @@
       "ticker": "GOOGL",
       "companyName": "Alphabet Inc.",
       "currentPrice": 338.46,
-      "dayChange": -4.0,
-      "dayChangePercent": -1.17,
+      "dayChange": -4.12,
+      "dayChangePercent": -1.2,
       "previousClose": 342.26,
       "changeFromClose": -3.8,
       "changeFromClosePercent": -1.11,
