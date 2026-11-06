@@ -1,4 +1,1 @@
-STOCK ALERT: AAPL is down -2.75%
-STOCK ALERT: MSFT is down -3.42%
-STOCK ALERT: GOOGL is down -3.88%
-STOCK ALERT: TSLA is down -8.13%
+STOCK ALERT: TSLA is up 2.49%
