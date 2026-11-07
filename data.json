@@ -1,21 +1,20 @@
 {
-  "lastUpdated": "2026-11-06 21:14:17 UTC",
+  "lastUpdated": "2026-11-07 01:33:14 UTC",
   "stocks": [
     {
       "ticker": "AAPL",
       "companyName": "Apple Inc.",
       "currentPrice": 342.37,
-      "dayChange": 4.07,
-      "dayChangePercent": 1.2,
+      "dayChange": 3.64,
+      "dayChangePercent": 1.07,
       "previousClose": 344.17,
       "changeFromClose": -1.8,
       "changeFromClosePercent": -0.52,
-      "volume": 38905057,
+      "volume": 43750861,
       "fiftyTwoWeekHigh": 355.38,
       "fiftyTwoWeekLow": 243.42,
       "marketOpen": false,
       "historicalData": [
-        341.07,
         338.4,
         329.4,
         333.02,
@@ -44,10 +43,10 @@
         338.32,
         331.9,
         349.51,
-        344.17
+        344.17,
+        342.37
       ],
       "historicalDates": [
-        "2026-09-25",
         "2026-09-28",
         "2026-09-29",
         "2026-09-30",
@@ -76,24 +75,24 @@
         "2026-11-02",
         "2026-11-03",
         "2026-11-04",
-        "2026-11-05"
+        "2026-11-05",
+        "2026-11-06"
       ]
     },
     {
       "ticker": "MSFT",
       "companyName": "Microsoft Corporation",
       "currentPrice": 530.61,
-      "dayChange": 5.61,
-      "dayChangePercent": 1.07,
+      "dayChange": 4.92,
+      "dayChangePercent": 0.94,
       "previousClose": 535.93,
       "changeFromClose": -5.32,
       "changeFromClosePercent": -0.99,
-      "volume": 23504889,
+      "volume": 26346052,
       "fiftyTwoWeekHigh": 559.15,
       "fiftyTwoWeekLow": 349.2,
       "marketOpen": false,
       "historicalData": [
-        516.17,
         509.22,
         508.96,
         512.9,
@@ -122,10 +121,10 @@
         507.12,
         520.99,
         555.8,
-        535.93
+        535.93,
+        530.61
       ],
       "historicalDates": [
-        "2026-09-25",
         "2026-09-28",
         "2026-09-29",
         "2026-09-30",
@@ -154,24 +153,24 @@
         "2026-11-02",
         "2026-11-03",
         "2026-11-04",
-        "2026-11-05"
+        "2026-11-05",
+        "2026-11-06"
       ]
     },
     {
       "ticker": "GOOGL",
       "companyName": "Alphabet Inc.",
       "currentPrice": 284.78,
-      "dayChange": -0.07,
-      "dayChangePercent": -0.02,
+      "dayChange": -0.12,
+      "dayChangePercent": -0.04,
       "previousClose": 282.57,
       "changeFromClose": 2.21,
       "changeFromClosePercent": 0.78,
-      "volume": 30146059,
+      "volume": 36226983,
       "fiftyTwoWeekHigh": 408.61,
       "fiftyTwoWeekLow": 270.7,
       "marketOpen": false,
       "historicalData": [
-        343.92,
         342.75,
         340.92,
         344.08,
@@ -200,10 +199,10 @@
         278.99,
         280.03,
         288.93,
-        282.57
+        282.57,
+        284.78
       ],
       "historicalDates": [
-        "2026-09-25",
         "2026-09-28",
         "2026-09-29",
         "2026-09-30",
@@ -232,7 +231,8 @@
         "2026-11-02",
         "2026-11-03",
         "2026-11-04",
-        "2026-11-05"
+        "2026-11-05",
+        "2026-11-06"
       ]
     },
     {
@@ -244,12 +244,11 @@
       "previousClose": 343.69,
       "changeFromClose": 14.53,
       "changeFromClosePercent": 4.23,
-      "volume": 36095506,
+      "volume": 36550707,
       "fiftyTwoWeekHigh": 498.83,
       "fiftyTwoWeekLow": 297.38,
       "marketOpen": false,
       "historicalData": [
-        372.11,
         357.45,
         352.84,
         354.81,
@@ -278,10 +277,10 @@
         403.82,
         398.5,
         385.19,
-        343.69
+        343.69,
+        358.22
       ],
       "historicalDates": [
-        "2026-09-25",
         "2026-09-28",
         "2026-09-29",
         "2026-09-30",
@@ -310,7 +309,8 @@
         "2026-11-02",
         "2026-11-03",
         "2026-11-04",
-        "2026-11-05"
+        "2026-11-05",
+        "2026-11-06"
       ]
     }
   ]
