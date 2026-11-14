@@ -1,2 +1,2 @@
-STOCK ALERT: GOOGL is down -2.55%
-STOCK ALERT: TSLA is down -2.71%
+STOCK ALERT: GOOGL is down -2.38%
+STOCK ALERT: TSLA is down -2.91%
